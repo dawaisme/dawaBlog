@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="bookmark" href="/favicon.ico" />
+		<title>純真年代-访客简单统计</title>
+		<link rel="stylesheet" href="../css/layui.css" />
+	</head>
+
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<div class="layui-col-xs12 layui-col-sm12 layui-col-md6">
+					<div id="main1" class="main" style="height: 280px;"></div>
+				</div>
+				<div class="layui-col-xs12 layui-col-sm12 layui-col-md6">
+					<div id="main2" class="main" style="height: 280px;"></div>
+				</div>
+				<div class="layui-col-xs12 layui-col-sm8 layui-col-md8">
+					<div id="main" class="main" style="height: 400px;"></div>
+				</div>
+				<div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
+					<div class="layui-row">
+						<br />
+						<br />
+						<br />
+						<div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
+							<input placeholder="开始时间" type="text" class="layui-input" id="start">
+						</div>
+						<div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
+							<input placeholder="结束时间" type="text" class="layui-input" id="end">
+						</div>
+						<div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
+							<button type="button" class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">查询</button>
+						</div>
+						<br />
+						<br />
+						<br />
+						<p class="layui-text">统计是按照<b> 天 </b>进行统计的，时间段查询出来的数据肯定会有出入的</p>
+						<p class="layui-text">离线统计的是2018-10-11 12:00之前的，后面的没有</p>
+						<p class="layui-text"><a href="https://www.bblog.vip/article_detail/1538898727015" target="_blank">直达车</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../lay/system/web/echarts/jquery.min.js"></script>
+		<script src="../lay/system/web/echarts/echarts.min.js"></script>
+		<script src="../lay/system/web/echarts/china.js"></script>
+		<script src="../lay/system/web/echarts/shine.js"></script>
+		<script type="text/javascript" src="../layui.js"></script>
+		<script>
+			option = {
+				title: {
+					text: '访客地区统计(按天)',
+					x: 'center'
+				},
+				tooltip: {
+					trigger: 'item'
+				},
+				dataRange: {
+					orient: 'horizontal',
+					min: 0,
+					max: 55000,
+					text: ['高', '低'],
+					splitNumber: 0
+				},
+				series: [{
+					name: '访客IP数',
+					type: 'map',
+					mapType: 'china',
+					mapLocation: {
+						x: 'right'
+					},
+					selectedMode: 'multiple',
+					itemStyle: {
+						normal: {
+							label: {
+								show: true
+							}
+						},
+						emphasis: {
+							label: {
+								show: true
+							}
+						}
+					},
+					data: []
+				}],
+				animation: false
+			};
+			option1 = {
+				title: {
+					text: '访客OS统计(按天)',
+					x: 'center'
+				},
+				tooltip: {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				series: [{
+					name: '访问来源',
+					type: 'pie',
+					radius: '55%',
+					center: ['50%', '60%'],
+					data: [],
+					itemStyle: {
+						emphasis: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					}
+				}]
+			};
+			option2 = {
+				title: {
+					text: '访客Browser统计(按天)',
+					x: 'center'
+				},
+				tooltip: {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				series: [{
+					name: '访问来源',
+					type: 'pie',
+					radius: '55%',
+					center: ['50%', '60%'],
+					data: [],
+					itemStyle: {
+						emphasis: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					}
+				}]
+			};
+
+			var myChart = echarts.init(document.getElementById('main'), 'shine');
+			var myChart1 = echarts.init(document.getElementById('main1'), 'shine');
+			var myChart2 = echarts.init(document.getElementById('main2'), 'shine');
+			layui.use(['layer', 'laydate'], function() {
+				var laydate = layui.laydate,
+					layer = layui.layer;
+				var formdata = {
+					start: '20181011',
+					end: '20181011'
+				}
+				$(function() {
+
+					mystart=laydate.render({
+						elem: '#start',
+						format: 'yyyyMMdd',
+						value: '20181011',
+						done: function(value, date, endDate) {
+							//获取end，判断
+							if(formdata.end) {
+								if(parseInt(value) > parseInt(formdata.end)) {
+									layer.msg("开始时间不能大于结束时间");
+									return false;
+								}
+							}
+							formdata.start = value
+							initOSData(formdata);
+							initAreaData(formdata);
+							initBrowserData(formdata);
+						}
+					});
+					myend=laydate.render({
+						elem: '#end',
+						format: 'yyyyMMdd',
+						value: '20181011',
+						done: function(value, date, endDate) {
+							//获取start，判断
+							if(formdata.start) {
+								if(parseInt(value) < parseInt(formdata.end)) {
+									layer.msg("结束时间不能小于结束时间");
+									return false;
+								}
+							}
+							formdata.end = value
+							initOSData(formdata);
+							initAreaData(formdata);
+							initBrowserData(formdata);
+						}
+					});
+					initOSData(formdata);
+					initAreaData(formdata);
+					initBrowserData(formdata);
+
+					function initAreaData(formdata) {
+						var data = [];
+						myChart.showLoading();
+						$.ajax({
+							url: '/api/blog-web/count/areas',
+							type: 'GET',
+							data: formdata,
+							success: function(result, status, xhr) {
+								var data_ = result.data;
+								for(var key in data_) {
+									data.push({
+										name: key,
+										value: data_[key]
+									})
+								}
+								option.series[0].data = data;
+								myChart.setOption(option);
+								myChart.hideLoading();
+							}
+						});
+					}
+
+					function initOSData(formdata) {
+						var data = [];
+						myChart1.showLoading();
+						$.ajax({
+							url: '/api/blog-web/count/oss',
+							type: 'GET',
+							data: formdata,
+							success: function(result, status, xhr) {
+								var data_ = result.data;
+								for(var key in data_) {
+									data.push({
+										name: key,
+										value: data_[key]
+									})
+								}
+								option1.series[0].data = data;
+								myChart1.setOption(option1);
+								myChart1.hideLoading();
+							}
+						});
+					}
+
+					function initBrowserData(formdata) {
+						var data = [];
+						myChart1.showLoading();
+						$.ajax({
+							url: '/api/blog-web/count/browsers',
+							type: 'GET',
+							data: formdata,
+							success: function(result, status, xhr) {
+								var data_ = result.data;
+								for(var key in data_) {
+									data.push({
+										name: key,
+										value: data_[key]
+									})
+								}
+								option2.series[0].data = data;
+								myChart2.setOption(option2);
+								myChart2.hideLoading();
+							}
+						});
+					}
+					window.addEventListener("resize", function() {
+						myChart.resize();
+						myChart1.resize();
+						myChart2.resize();
+					});
+				})
+			});
+		</script>
+	</body>
+
+</html>

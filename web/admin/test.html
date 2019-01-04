@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../res/jquery-3.3.1/jquery-3.3.1.js"></script>
+</head>
+<body>
+<a href="javascript:test()">点我</a>
+
+</body>
+<script>
+    function test() {
+        var json = {"title": 123};
+        type:'post',
+        $.ajax({
+            url:'/admin/admin.do?cmd=addArticle',
+            type:'post',
+            data:json,
+            success:function (data) {
+                alert("1");
+            }
+        })
+    }
+</script>
+</html>

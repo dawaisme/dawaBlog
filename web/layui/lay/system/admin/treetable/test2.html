@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../../css/layui.css" />
+		<link rel="stylesheet" href="css/jquery.treetable.css" />
+		<link rel="stylesheet" href="css/jquery.treetable.theme.default.css" />
+	</head>
+
+	<body>
+		<table class="layui-table" id="example-advanced">
+			<thead>
+				<tr>
+					<th>昵称</th>
+					<th>加入时间</th>
+					<th>签名</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-tt-id="1">
+					<td>贤心</td>
+					<td>2016-11-29</td>
+					<td>人生就像是一场修行</td>
+				</tr>
+				<tr data-tt-id="1-1" data-tt-parent-id="1">
+					<td>贤心</td>
+					<td>2016-11-29</td>
+					<td>人生就像是一场修行</td>
+				</tr>
+				<tr data-tt-id="2">
+					<td>许闲心</td>
+					<td>2016-11-28</td>
+					<td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+				</tr>
+				<tr data-tt-id="2-1" data-tt-parent-id="2">
+					<td>许闲心</td>
+					<td>2016-11-28</td>
+					<td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+				</tr>
+				<tr data-tt-id="2-2" data-tt-parent-id="2">
+					<td>许闲心</td>
+					<td>2016-11-28</td>
+					<td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+				</tr>
+				<tr data-tt-id="2-2-1" data-tt-parent-id="2-2">
+					<td>许闲心</td>
+					<td>2016-11-28</td>
+					<td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+				</tr>
+			</tbody>
+		</table>
+		<script type="text/javascript" src="../../../../layui.js"></script>
+		<script type="text/javascript" src="../../jquery.min.js"></script>
+		<script type="text/javascript" src="jquery.treetable.js"></script>
+		<script>
+			$(function() {
+				$("#example-advanced").treetable({
+					expandable: true
+				});
+			})
+		</script>
+	</body>
+
+</html>

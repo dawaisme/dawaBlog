@@ -1,0 +1,120 @@
+
+canvas{
+    position: absolute;
+    opacity: 0.3;
+}
+
+#login_login{
+    width: 500px;
+    height: auto;
+    overflow: hidden;
+    margin: 10% auto 0 auto;
+    padding: 40px;
+    box-shadow: inset 0 0 20px 10px #615b66;
+    border-radius:10px;
+}
+
+
+body {
+    width: 100%;
+    background: #0c0807;
+    opacity: 0.9;
+}
+
+body .my-login-css .layui-layer-title {
+    display: none;
+}
+
+body .my-login-css .layui-layer-setwin {
+    top: 14px;
+}
+
+body .my-login-css .layui-layer-setwin a {
+    margin: 0 10px;
+}
+
+body .layui-tab {
+    margin-top: 0;
+}
+
+body .layui-tab .layui-tab-title {
+    padding-left: 100px;
+    border: none;
+}
+
+body .layui-tab .layui-tab-title li {
+    font-size: 16px;
+    line-height: 50px;
+}
+
+body .layui-tab .layui-tab-content {
+    padding-top: 20px;
+}
+
+body .layui-tab .layui-tab-content .layui-form .layui-form-item label {
+    width: 100px;
+    height: 42px;
+    line-height: 26px;
+}
+
+body .layui-tab .layui-tab-content .layui-form .layui-form-item .layui-input-block {
+    margin-left: 100px;
+}
+
+body .layui-tab .layui-tab-content .layui-form .layui-form-item .layui-input-block input {
+    height: 42px;
+}
+
+body .other-way .other-way-tilte {
+    box-sizing: border-box;
+    position: relative;
+    font-size: 14px;
+    color: #7f7f7f;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+body .other-way .other-way-tilte::-moz-placeholder {
+    color: #999;
+}
+
+body .other-way .other-way-tilte::after {
+    right: 30px;
+}
+
+body .other-way .other-way-tilte::before, body .other-way .other-way-tilte::after {
+    content: '';
+    height: 1px;
+    width: 110px;
+    background: #e2e2e2;
+    position: absolute;
+    top: 50%;
+}
+
+body .other-way .other-way-tilte::before {
+    left: 30px;
+}
+
+body .other-way > a {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    margin-left: 50px;
+}
+
+body .other-way .qq-login {
+    background: url(../../images/my/public-icon.png) 0 -57px;
+}
+
+body .other-way .wx-login {
+    background: url(../../images/my/public-icon.png) -53px -57px;
+}
+
+body .other-way .wb-login {
+    background: url(../../images/my/public-icon.png) -106px -57px;
+}
+
+/*# sourceMappingURL=login.css.map */
+

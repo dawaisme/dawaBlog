@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>role_edit</title>
+		<link rel="shortcut icon" href="../images/my/favicon.ico" />
+		<link rel="bookmark" href="../images/my/favicon.ico" />
+
+		<link rel="stylesheet" href="../../../css/layui.css" />
+		<link rel="stylesheet" href="../../../css/admin/common.css" />
+		<link rel="stylesheet" href="../../../css/admin/update_my_base_info.css" />
+
+		<link rel="stylesheet" href="../../metroStyle/metroStyle.css" />
+
+	</head>
+
+	<body style="background: #F6F6F6;">
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<div class="layui-col-md12">
+					<div class="layui-card layui-anim layui-anim-upbit">
+						<div class="layui-card-header">编辑角色
+							<span class="btn_right">
+								<button type="button" id="back" title="返回" class="layui-btn layui-btn-normal layui-btn-xs" onclick="javascript:window.history.back(-1);"><i class="layui-icon">&#xe65c;</i>返回上一页</button>
+								<button type="button" id="refresh" title="刷新" class="layui-btn layui-btn-normal layui-btn-xs"><i class="layui-icon layui-icon-refresh"></i></button>
+							</span>
+						</div>
+						<div class="layui-card-body">
+							<form class="layui-form" action="">
+								<div class="layui-form-item layui-row">
+									<input type="hidden" name="id" />
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">名称：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="角色名称" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">角色描述：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<input type="text" name="description" lay-verify="required" placeholder="角色描述" autocomplete="off" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">权限：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<ul id="treeDemo" class="ztree" style="border: 1px solid rgb(230,230,230);border-radius: 2px;"></ul>
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs1 layui-hide-xs">&nbsp;</label>
+									<button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo"></i><span>确认修改</span></button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../lay/system/jquery.min.js"></script>
+		<script type="text/javascript" src="../../metroStyle/jquery.ztree.core.js"></script>
+		<script type="text/javascript" src="../../metroStyle/jquery.ztree.excheck.js"></script>
+
+		<script type="text/javascript" src="../../../layui.js"></script>
+		<script type="text/javascript" src="../../../lay/system/admin/public.js?v=dksao923470oer92148"></script>
+		<script>
+			var setting = {
+				check: {
+					enable: true
+				},
+				data: {
+					key: {
+						title: "title"
+					},
+					simpleData: {
+						enable: true,
+						idKey: "id",
+						pIdKey: "parentid",
+						rootPId: 0
+					}
+				}
+			};
+			var Jquery = $;
+			var zNodes;
+		</script>
+		<script>
+			layui.use(['layer', 'form'], function() {
+				var layer = layui.layer,
+					$ = layui.$,
+					form = layui.form;
+				$(document).ready(function() {
+					var id = getUrlParam("id")
+					var menus;
+					zNodes = getMenus("");
+					initData(id);
+					checkzNodes(zNodes);
+					var zTreeObj = Jquery.fn.zTree.init($("#treeDemo"), setting, zNodes);
+					//表单监听提交
+					form.on('submit(formDemo)', function(data) {
+						$("button[lay-filter='formDemo']").attr('disabled', true);
+						setTimeout(function() {
+							$("button[lay-filter='formDemo']").attr('disabled', false);
+						}, 10000);
+						var dict_data = data.field;
+						var checkedNodes = zTreeObj.getCheckedNodes();
+						var permissionIds = [];
+						$.each(checkedNodes, function(idx, obj) {
+							permissionIds.push(obj.id)
+						});
+						dict_data.permissionIds = permissionIds;
+						dict_data = JSON.stringify(dict_data)
+						$.ajax({
+							url: IP + '/api/blog-admin/role',
+							type: 'PUT',
+							data: dict_data,
+							async: false,
+							success: function(result, status, xhr){
+								refresh_token(); 
+								layer.closeAll('loading');
+								layer.msg(result.message, {
+									icon: 1,
+									time: 1000
+								}, function() {
+									window.history.back(-1);
+								});
+							}
+						});
+						return false;
+					});
+					//初始化页面数据
+					function initData(id) {
+						//用户数据
+						showUser(id);
+					}
+
+					function showUser(id) {
+						$.ajax({
+							url: IP + '/api/blog-admin/role/' + id,
+							type: 'GET',
+							async: false,
+							success: function(result, status, xhr) {
+								layer.closeAll('loading');
+								var data = result.data;
+								menus = data.menus;
+								$("input[name='id']").val(data.id)
+								$("input[name='name']").val(data.name)
+								$("input[name='description']").val(data.description)
+							}
+						});
+					}
+					//zNodes
+					function checkzNodes(data) {
+						for(var j = 0; j < data.length; j++) {
+							for(var i = 0; i < menus.length; i++) {
+								if(data[j].id == menus[i].id) {
+									zNodes[j].checked = true;
+									break;
+								} else {
+									zNodes[j].checked = false;
+								}
+							}
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

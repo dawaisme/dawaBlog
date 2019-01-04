@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>纯真年代-视频解析</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="../css/layui.css" />
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				border: none;
+			}
+			
+			body {
+				background: url(../images/my/bg.png);
+			}
+			
+			.title {
+				color: #FFFFFF;
+				font-size: 28px;
+				text-align: center;
+			}
+			.all_video a{
+				display: inline-block;
+				margin-bottom: 5px;
+			}
+			.all_video a img{
+				border: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1 class="title">VIP视频解析</h1>
+		<div class="layui-container">
+			<div class="layui-row">
+				<div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+					<form class="layui-form" onsubmit="return false;">
+						<div class="layui-form-item">
+							<div class="layui-row">
+								<div class="layui-col-xs12 layui-col-sm10 layui-col-md10">
+									<input id="url" type="text" name="title" required lay-verify="required" placeholder="粘贴视频播放地址..." autocomplete="off" class="layui-input" style="border-bottom-right-radius: 0;border-top-right-radius: 0;">
+								</div>
+								<div class="layui-col-xs12 layui-col-sm2 layui-col-md2">
+									<button id="submit" class="layui-btn layui-btn-danger" lay-submit lay-filter="formDemo" style="border-bottom-left-radius: 0;border-top-left-radius: 0;width: 100%;">开始解析</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<iframe id="video" height="400px" width="100%" allowfullscreen="true" allowtransparency="true" src="http://yun.baiyug.cn/vip/index.php?url=https%3A%2F%2Fwww.iqiyi.com%2Fv_19rr7pi4k4.html"></iframe>
+			</div>
+			<div class="all_video">
+				<a href="http://www.iqiyi.com/" target="view_window" title="爱奇艺视频"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3648390168,1713673067&fm=58&s=6BC28852DD305C0354F4835E02001073&bpow=121&bpoh=75" title="爱奇艺视频" alt="爱奇艺视频"></a>
+				<a href="http://youku.com/" target="view_window" title="优酷视频"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1224579036,3430335986&fm=58&s=37F76832DD66EE1149549AF40300D0B5&bpow=121&bpoh=75" title="优酷视频" alt="优酷视频"></a>
+				<a href="https://v.qq.com/" target="view_window" title="腾讯视频"><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2577259750,1150388651&fm=58&s=2124D41287E16D014ECD49C6000010B3" title="腾讯视频" alt="腾讯视频"></a>
+				<a href="http://www.tudou.com/" target="view_window" title="土豆视频"><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3084383971,4168651777&fm=96" title="土豆视频" alt="土豆视频"></a>
+				<a href="http://www.le.com/" target="view_window" title="乐视视频"><img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3865467473,993803154&fm=58&s=77F62972CDA06C01187402EC0200E036&bpow=121&bpoh=75" title="乐视视频" alt="乐视视频"></a>
+				<a href="https://tv.sohu.com/" target="view_window" title="搜狐视频"><img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1767309032,288351360&fm=58&s=61EDBE468CA449131EA6F27A0300F07B&bpow=121&bpoh=75" title="搜狐视频" alt="搜狐视频"></a>
+				<a href="https://www.mgtv.com/" target="view_window" title="芒果TV"><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=592793815,3099896906&fm=58&s=FEC7E91ED4B1F9821E7D8CC400009031&bpow=121&bpoh=75" title="芒果TV" alt="芒果TV"></a>
+				<a href="http://www.pptv.com/" target="view_window" title="原PPTV聚力视频"><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2552131531,889738107&fm=58&s=CC87C712CDB7EE114E6B8546020070BB&bpow=121&bpoh=75" title="原PPTV聚力视频" alt="原PPTV聚力视频"></a>
+			</div>
+			<p>
+				PS:您也可以粘贴<a style="color: red;">非上述视频播放地址</a><br />
+				如视频卡顿，您可以<a style="color: red;">重新解析</a>播放地址，再拖到播放进度（╮（╯＿╰）╭）<br />
+				有的浏览器可能需要您<a style="color: red;">自己点击播放按钮</a>
+			</p>
+		</div>
+		<script type="text/javascript" src="../layui.js"></script>
+		<script>
+			//Demo
+			layui.use(['form', 'layer'], function() {
+				var form = layui.form,
+					$ = layui.jquery;
+				//监听提交
+				$("#submit").prop('disabled', true);
+				form.on('submit(formDemo)', function(data) {
+					var url = $("#url").val();
+					$('#video').prop('src', 'http://yun.baiyug.cn/vip/index.php?url=' + url)
+					return false;
+				});
+				//iframe加载完成
+				$('#video').load(function() {
+					$("#submit").prop('disabled', false);
+				})
+			});
+		</script>
+	</body>
+
+</html>

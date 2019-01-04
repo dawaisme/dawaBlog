@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>偶尔有点困-登录</title>
+		<link rel="stylesheet" href="../css/layui.css" />
+		<link rel="stylesheet" href="../css/web/common.css" />
+		<link rel="stylesheet" href="../css/web/login.css" />
+	</head>
+
+	<body>
+		<header class="myheader animated top">
+			<div class="layui-container">
+				<div class="logo">
+					TRIEDBLOG
+				</div>
+				<div class="left">
+					<ul class="layui-nav">
+						<li class="layui-nav-item">
+							<a href="index.html?__hbt=1524650296533">博客首页</a>
+						</li>
+						<li class="layui-nav-item">
+							<a href="index.html?__hbt=1524650296533">那年今日</a>
+						</li>
+						<li class="layui-nav-item">
+							<a href="about.html?__hbt=1524650296533">实验</a>
+						</li>
+						<li class="layui-nav-item">
+							<a href="leave_msg.html?__hbt=1524650296533">留言</a>
+						</li>
+						<li class="layui-nav-item">
+							<a href="about.html?__hbt=1524650296533">关于</a>
+						</li>
+					</ul>
+				</div>
+				<div class="right">
+					<ul class="layui-nav">
+						<li class="layui-nav-item layui-hide-sm layui-hide-md layui-hide-lg" id="navs">
+							<a>
+								<i class="layui-icon">&#xe65f;</i>
+							</a>
+						</li>
+						<li class="layui-nav-item">
+							<a><img src="../images/my/login.jpg" class="layui-nav-img"></a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="login.html?__hbt=1524650296533">立即登录</a>
+								</dd>
+								<dd>
+									<a href="reg.html?__hbt=1524650296533">点我注册</a>
+								</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item layui-hide">
+							<a><img src="../images/my/login.jpg" class="layui-nav-img"></a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="javascript:;">绑定账号</a>
+								</dd>
+								<dd>
+									<a href="javascript:;">退出</a>
+								</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<div class="content">
+			<div class="layui-container">
+				<div class="layadmin-user-login-main">
+					<div class="layadmin-user-login-box layadmin-user-login-header">
+						<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+							<ul class="layui-tab-title">
+								<li class=""><a href="login.html">登录</a></li>
+								<li class="layui-this">注册</li>
+							</ul>
+						</div>
+					</div>
+					<div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+						<div class="layui-form-item">
+							<label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-cellphone"></label>
+							<input name="cellphone" id="LAY-user-login-cellphone" lay-verify="phone" placeholder="手机" class="layui-input" type="text">
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-row">
+								<div class="layui-col-xs7">
+									<label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-login-vercode"></label>
+									<input name="vercode" id="LAY-user-login-vercode" lay-verify="required" placeholder="验证码" class="layui-input" type="text">
+								</div>
+								<div class="layui-col-xs5">
+									<div style="margin-left: 10px;">
+										<button type="button" class="layui-btn layui-btn-primary layui-btn-fluid" id="LAY-user-getsmscode">获取验证码</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+							<input name="password" id="LAY-user-login-password" lay-verify="required|password" placeholder="密码" class="layui-input" type="password">
+						</div>
+						<div class="layui-form-item">
+							<label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-repass"></label>
+							<input name="repassword" id="LAY-user-login-repass" lay-verify="required|password" placeholder="确认密码" class="layui-input" type="password">
+						</div>
+						<div class="layui-form-item">
+							<label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-nickname"></label>
+							<input name="nickname" id="LAY-user-login-nickname" lay-verify="nickname" placeholder="昵称" class="layui-input" type="text">
+						</div>
+						<div class="layui-form-item">
+							<input name="agreement" lay-skin="primary" title="同意用户协议" checked="" type="checkbox">
+							<div class="layui-unselect layui-form-checkbox layui-form-checked" lay-skin="primary"><span>同意用户协议</span><i class="layui-icon"></i></div>
+						</div>
+						<div class="layui-form-item">
+							<button class="layui-btn layui-btn-danger layui-btn-fluid" lay-submit="" lay-filter="LAY-user-login-submit">注 册</button>
+						</div>
+						<div class="layui-trans layui-form-item layadmin-user-login-other">
+							<label>社交账号登入</label>
+							<a href="javascript:;"><i class="layui-icon layui-icon-login-qq"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 底部信息 -->
+		<footer class="footer">
+			<div class="footavatar">
+				<img src="../images/my/s6.jpg" class="footphoto">
+				<ul class="footinfo">
+					<p class="fname">
+						<a href="/dancesmile">偶尔有点困</a>
+					</p>
+					<p class="finfo">性别：^_^ 年龄：^_^岁</p>
+					<p>现居：重庆</p>
+				</ul>
+			</div>
+			<div class="info">
+				<p>承认现实生活中的不足之处，并通过自己的努力去弥补这种不足</p>
+				<span>
+										<a>© 2018 偶尔有点困</a>
+									</span>
+				<span>
+										<a>渝ICP备17007479号-1</a>
+									</span>
+				<span class="no-right-border">
+										<a href="">后台登录</a>
+									</span>
+				<span class="layui-clear no-right-border"></span>
+			</div>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../layui.js"></script>
+	<script type="text/javascript" src="../lay/system/public.js" ></script>
+	<script type="text/javascript" src="../lay/system/web/reg.js"></script>
+	<script>
+	</script>
+
+</html>

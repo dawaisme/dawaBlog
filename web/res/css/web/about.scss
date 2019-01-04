@@ -1,0 +1,55 @@
+@charset "UTF-8";
+.content {
+    min-height: 500px;
+    .mycontent {
+        .content-left {
+            .about {
+                border-color: #E8E5DD;
+                background: #E8E5DD;
+                box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+                min-height: 300px;
+                padding: 20px 20px;
+                border-radius: 2px;
+                >p {
+                    display: block;
+                    margin-top: 20px;
+                }
+                p.title {
+                    font-size: 20px;
+                    text-align: center;
+                }
+                p.yunxing {
+                    >span.show-title{
+                    font-size: 16px;
+                        font-weight: bold;
+                    }
+                    >span.jiesao {
+                        font-size: 15px;
+                        display: block;
+                        text-indent: 2em;
+                    }
+                    line-height: 30px;
+                }
+                span#yunxing {
+                    display: inline;
+                    font-size: 20px;
+                    letter-spacing: 1px;
+                    line-height: 100px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .content {
+        .mycontent {
+            .content-left {
+                padding: 0 80px;
+            }
+        }
+    }
+}
+
+
+/*# sourceMappingURL=about.css.map */

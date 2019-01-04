@@ -1,0 +1,40 @@
+@charset "UTF-8";
+.thumbBox {
+  position: relative;
+  height: 98px;
+  overflow: hidden;
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  line-height: 98px; }
+
+.thumbBox:after {
+  width: 100%;
+  height: 100%;
+  line-height: 98px;
+  z-index: -1;
+  text-align: center;
+  font-size: 16px;
+  content: "封面图-拖拽到这里";
+  left: 0;
+  top: 0;
+  color: #9F9F9F;
+  position: absolute; }
+
+.thumbImg {
+  max-width: 100%;
+  max-height: 100%;
+  border: none;
+  display: inline-block; }
+
+.mylayui-form-label {
+  float: left;
+  display: block;
+  padding: 9px 0;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center; }
+
+/*# sourceMappingURL=send_one_article.css.map */

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>偶尔有点困-文章分类</title>
+		<link rel="stylesheet" href="../css/layui.css" />
+		<link rel="stylesheet" href="../css/web/common.css" />
+		<link rel="stylesheet" href="../css/web/clssify.css" />
+	</head>
+
+	<body>
+		<header class="myheader animated top">
+			<div class="layui-container">
+				<div class="logo">
+					TRIEDBLOG
+				</div>
+				<div class="left">
+					<ul class="layui-nav">
+						<li class="layui-nav-item">
+							<a href="index.html?__hbt=1524650296533">博客首页</a>
+						</li>
+						<li class="layui-nav-item">
+							<a href="index.html?__hbt=1524650296533">那年今日</a>
+						</li>
+						<li class="layui-nav-item">
+							<a href="about.html?__hbt=1524650296533">实验</a>
+						</li>
+						<li class="layui-nav-item">
+							<a href="leave_msg.html?__hbt=1524650296533">留言</a>
+						</li>
+						<li class="layui-nav-item">
+							<a href="about.html?__hbt=1524650296533">关于</a>
+						</li>
+					</ul>
+				</div>
+				<div class="right">
+					<ul class="layui-nav">
+						<li class="layui-nav-item layui-hide-sm layui-hide-md layui-hide-lg" id="navs">
+							<a>
+								<i class="layui-icon">&#xe65f;</i>
+							</a>
+						</li>
+						<li class="layui-nav-item">
+							<a><img src="../images/my/login.jpg" class="layui-nav-img"></a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="login.html?__hbt=1524650296533">立即登录</a>
+								</dd>
+								<dd>
+									<a href="reg.html?__hbt=1524650296533">点我注册</a>
+								</dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item layui-hide">
+							<a><img src="../images/my/login.jpg" class="layui-nav-img"></a>
+							<dl class="layui-nav-child">
+								<dd>
+									<a href="javascript:;">绑定账号</a>
+								</dd>
+								<dd>
+									<a href="javascript:;">退出</a>
+								</dd>
+							</dl>
+						</li>
+					</ul>
+				</div>	
+			</div>
+		</header>
+		<div class="content">
+			<!-- 帖子 -->
+			<div class="layui-container mycontent">
+				<div class="layui-row">
+					<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+						<legend><strong>偶尔有点困(triedblog)</strong> 目前共有分类：6 类 </legend>
+					</fieldset>
+					<div class="layui-col-md9 layui-col-sm8 layui-col-xs12 content-left">
+						<a href="https://waylee.net/category/jsz/%e5%89%8d%e7%ab%af/" data-uk-tooltip="">前端 (9)</a>
+						<a href="https://waylee.net/category/jsz/" data-uk-tooltip="">折腾笔记 (267)</a>
+						<a href="https://waylee.net/category/nofl/" title="" data-uk-tooltip="">未分类文章 (69)</a>
+						<a href="https://waylee.net/category/qw/" data-uk-tooltip="">短篇故事 (452)</a>
+						<a href="https://waylee.net/category/yp/" title="" data-uk-tooltip="">视频音乐 (54)</a>
+						<a href="https://waylee.net/category/diary/" title="" data-uk-tooltip="">随手记录 (253)</a>
+					</div>
+					<div class="layui-col-md3 layui-col-sm4 layui-col-xs12 content-right">
+						<div>
+							<!-- 文章标签 -->
+							<div class="grid" id="grid">
+								<h3></h3>
+								<div class="content">
+									<div class="myquote">
+										没有什么比年轻时候的贫穷更理直气壮的
+									</div>
+									<span class="layui-col-md4 layui-col-sm4 layui-col-xs4">
+										<a href="article_list.html?__hbt=1524650296533" atitle="文章"><b>32</b><i class="layui-icon">&#xe60a;</i></a>
+									</span>
+									<span class="layui-col-md4 layui-col-sm4 layui-col-xs4">
+										<a href="classify.html?__hbt=1524650296533" atitle="分类"><b>8</b><i class="layui-icon">&#xe61d;</i></a>
+									</span>
+									<span class="layui-col-md4 layui-col-sm4 layui-col-xs4 no-right-border">
+										<a atitle="标签"><b>14</b><i class="layui-icon">&#xe64d;</i></a>
+									</span>
+									<span class="layui-clear no-right-border"></span>
+								</div>
+							</div>
+							<!-- 文章标签 -->
+							<div class="flag">
+								<h3>文章标签</h3>
+								<div class="content">
+									<span class="layui-badge layui-bg-blue">springboot</span>
+									<span class="layui-badge layui-bg-black">springcloud</span>
+									<span class="layui-badge">redis</span>
+									<span class="layui-badge layui-bg-green">java</span>
+									<span class="layui-badge layui-bg-orange">node.js</span>
+									<span class="layui-badge layui-bg-cyan">nginx</span>
+								</div>
+							</div>
+							<!-- 热门文章，后台通过点击量 -->
+							<div class="hot-post">
+								<h3>热门文章</h3>
+								<div class="content">
+									<ul>
+										<li>热门文章1</li>
+										<li>热门文章2</li>
+										<li>热门文章3</li>
+										<li>热门文章4</li>
+									</ul>
+								</div>
+							</div>
+							<!-- 热门推荐文章，后台设置 -->
+							<div class="re-post">
+								<h3>推荐文章</h3>
+								<div class="content">
+									<ul>
+										<li>推荐文章1</li>
+										<li>推荐文章2</li>
+										<li>推荐文章3</li>
+										<li>推荐文章4</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 底部信息 -->
+		<footer class="footer">
+			<div class="footavatar">
+				<img src="../images/my/s6.jpg" class="footphoto">
+				<ul class="footinfo">
+					<p class="fname">
+						<a href="/dancesmile">偶尔有点困</a>
+					</p>
+					<p class="finfo">性别：^_^ 年龄：22岁</p>
+					<p>现居：重庆</p>
+				</ul>
+			</div>
+			<div class="recentuser layui-hide-xs">
+				<p>最近访客</p>
+				<ul>
+					<li>
+						<img src="../images/my/photo.jpg" alt="访客1" />
+					</li>
+					<li>
+						<img src="../images/my/photo.jpg" alt="访客2" />
+					</li>
+					<li>
+						<img src="../images/my/photo.jpg" alt="访客3" />
+					</li>
+					<li>
+						<img src="../images/my/photo.jpg" alt="访客4" />
+					</li>
+					<li>
+						<img src="../images/my/photo.jpg" alt="访客5" />
+					</li>
+					<li>
+						<img src="../images/my/photo.jpg" alt="访客6" />
+					</li>
+				</ul>
+			</div>
+			<div class="info">
+				<p>承认现实生活中的不足之处，并通过自己的努力去弥补这种不足</p>
+				<span>
+										<a>© 2018 偶尔有点困</a>
+									</span>
+				<span>
+										<a>渝ICP备17007479号-1</a>
+									</span>
+				<span class="no-right-border">
+										<a href="">后台登录</a>
+									</span>
+				<span class="layui-clear no-right-border"></span>
+			</div>
+		</footer>
+		<ul class="layui-fixbar">
+			<li class="layui-icon layui-fixbar-top" lay-type="top" style="display: list-item;">&#xe604;</li>
+		</ul>
+	</body>
+	<script type="text/javascript" src="../layui.js"></script>
+	<script type="text/javascript" src="../lay/system/public.js"></script>
+	<script type="text/javascript" src="../lay/system/web/classify.js"></script>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>admin_query</title>
+		<link rel="shortcut icon" href="../images/my/favicon.ico" />
+		<link rel="bookmark" href="../images/my/favicon.ico" />
+		<link rel="stylesheet" href="../../../css/layui.css" />
+		<link rel="stylesheet" href="../../../css/admin/common.css" />
+	</head>
+
+	<body>
+		<div class="layui-row">
+			<div class="layui-col-md12">
+				<table class="layui-table" lay-skin="line">
+					<tbody>
+						<tr>
+							<td>用户名：</td>
+							<td name="username"></td>
+							<td>昵称：</td>
+							<td name="nickname"></td>
+						</tr>
+						<tr>
+							<td>性别：</td>
+							<td name="sex"></td>
+							<td>生日：</td>
+							<td name="birthday"></td>
+						</tr>
+						<tr>
+							<td>电话：</td>
+							<td name="phone"></td>
+							<td>邮箱：</td>
+							<td name="email"></td>
+						</tr>
+						<tr>
+							<td>创建时间：</td>
+							<td name="createtime"></td>
+							<td>最近修改时间：</td>
+							<td name="updatetime"></td>
+						</tr>
+						<tr>
+							<td>状态：</td>
+							<td name="status"></td>
+							<td>头像：</td>
+							<td name="headurl">
+								<a href="" target='view_window'>
+								<img src="" style="height: 50px;width: 50px;border-radius: 50%;border: none;" />
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td>角色：</td>
+							<td colspan="3" name="roles"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../layui.js"></script>
+		<script type="text/javascript" src="../../../lay/system/admin/public.js?v=dksao923470oer92148"></script>
+		<script>
+			layui.use(['layer', 'form'], function() {
+				var layer = layui.layer,
+					$ = layui.$;
+				var uid = getUrlParam("uid")
+				initData(uid);
+				//初始化页面数据
+				function initData(uid) {
+					//用户数据
+					$.ajax({
+						url: IP + '/api/blog-admin/sysUser/' + uid,
+						type: 'GET',
+						success: function(result, status, xhr) {
+							layer.closeAll('loading');
+							$("td[name='username']").html(result.data.username)
+							$("td[name='nickname']").html(result.data.nickname)
+							$.each(getDictionary("sex"), function(idx,obj) {
+								if(result.data.sex==obj.k){
+									$("td[name='sex']").html(obj.v+"")
+								}
+							});
+							$("td[name='birthday']").html(result.data.birthday)
+							$("td[name='phone']").html(result.data.phone)
+							$("td[name='email']").html(result.data.email)
+							$("td[name='createtime']").html(result.data.createtime)
+							$("td[name='updatetime']").html(result.data.updatetime)
+							$("td[name='headurl']").children('a').attr('href',result.data.headimgurl)
+								.children('img').attr('src',result.data.headimgurl)
+							$.each(getDictionary("userStatus"), function(idx,obj) {
+								if(result.data.status==obj.k){
+									$("td[name='status']").html(obj.v+"")
+								}
+							});
+							$.each(result.data.roles, function(idx,obj) {
+								$("td[name='roles']").append(obj.name+" ")
+							});
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+
+</html>

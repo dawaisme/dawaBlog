@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>dictionary_add</title>
+		<link rel="shortcut icon" href="../images/my/favicon.ico" />
+		<link rel="bookmark" href="../images/my/favicon.ico" />
+		<link rel="stylesheet" href="../../../css/layui.css" />
+		<link rel="stylesheet" href="../../../css/admin/common.css" />
+		<link rel="stylesheet" href="../../../css/admin/update_my_base_info.css" />
+	</head>
+
+	<body style="background: #F6F6F6;">
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<div class="layui-col-md12">
+					<div class="layui-card layui-anim layui-anim-upbit">
+						<div class="layui-card-header">添加字典
+							<span class="btn_right">
+								<button type="button" id="back" title="返回" class="layui-btn layui-btn-normal layui-btn-xs" onclick="javascript:window.history.back(-1);"><i class="layui-icon">&#xe65c;</i>返回上一页</button>
+								<button type="button" id="refresh" title="刷新" class="layui-btn layui-btn-normal layui-btn-xs"><i class="layui-icon layui-icon-refresh"></i></button>
+							</span>
+						</div>
+						<div class="layui-card-body">
+							<form class="layui-form" action="">
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">type：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<input type="text" name="type" required lay-verify="required" autocomplete="off" placeholder="type" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">key：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<input type="text" name="k" required lay-verify="required" placeholder="key" autocomplete="off" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">value：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<input type="text" name="v" required lay-verify="required" placeholder="value" autocomplete="off" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs1 layui-hide-xs">&nbsp;</label>
+									<button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo"></i><span>确认添加</span></button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../layui.js"></script>
+		<script type="text/javascript" src="../../../lay/system/admin/public.js?v=dksao923470oer92148"></script>
+		<script>
+			layui.use(['layer', 'form'], function() {
+				var layer = layui.layer,
+					$ = layui.$,
+					form = layui.form;
+				//表单监听提交
+				form.on('submit(formDemo)', function(data) {
+					var dict_data = data.field;
+					sessionStorage.removeItem(dict_data.type);
+					dict_data=JSON.stringify(dict_data)
+					$.ajax({
+						url: IP + '/api/blog-admin/dictionary',
+						type: 'POST',
+						data: dict_data,
+						success: function(result, status, xhr) {
+							layer.closeAll('loading');
+							layer.msg(result.message, {
+								icon: 1,
+								time: 1000
+							},function(){
+								window.history.back(-1);
+							});
+						}
+					});
+					return false;
+				});
+				
+			});
+		</script>
+	</body>
+
+</html>

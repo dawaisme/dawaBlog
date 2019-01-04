@@ -1,0 +1,90 @@
+@charset "UTF-8";
+body {
+    background: url(../../images/my/login_back.png) top no-repeat;
+    .my-login-css {
+        .layui-layer-title {
+            display: none;
+        }
+        .layui-layer-setwin {
+            top: 14px;
+            a {
+                margin: 0;
+                margin: 0 10px;
+            }
+        }
+    }
+    .layui-tab {
+        margin-top: 0;
+        .layui-tab-title {
+            padding-left: 100px;
+            border: none;
+            li {
+                font-size: 16px;
+                line-height: 50px;
+            }
+        }
+        .layui-tab-content {
+            padding-top: 20px;
+            .layui-form {
+                .layui-form-item {
+                    label {
+                        width: 100px;
+                        height: 42px;
+                        line-height: 26px;
+                    }
+                    .layui-input-block {
+                        margin-left: 100px;
+                        input {
+                            height: 42px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .other-way {
+        .other-way-tilte {
+            box-sizing: border-box;
+            position: relative;
+            font-size: 14px;
+            color: #7f7f7f;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            &::-moz-placeholder {
+                color: #999;
+            }
+            &::after {
+                right: 30px;
+            }
+            &::before,
+            &::after {
+                content: '';
+                height: 1px;
+                width: 110px;
+                background: #e2e2e2;
+                position: absolute;
+                top: 50%;
+            }
+            &::before {
+                left: 30px;
+            }
+        }
+        >a {
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            margin-left: 50px;
+        }
+        .qq-login {
+            background: url(../../images/my/public-icon.png) 0px -57px;
+        }
+        .wx-login {
+            background: url(../../images/my/public-icon.png) -53px -57px;
+        }
+        .wb-login {
+            background: url(../../images/my/public-icon.png) -106px -57px;
+        }
+    }
+}

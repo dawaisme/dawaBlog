@@ -1,0 +1,66 @@
+/* table 样式 */
+@charset "utf-8";
+table {
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+}
+
+table td,
+table th {
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	padding: 3px 5px;
+}
+
+table th {
+	border-bottom: 2px solid #ccc;
+	text-align: center;
+}
+
+
+/* blockquote 样式 */
+
+blockquote {
+	font-weight: bold;
+	display: block;
+	margin: 10px 0;
+	background-color: #f1f1f1;
+	margin-bottom: 10px;
+	padding: 15px;
+	line-height: 22px;
+	border-left: 5px solid #FF5722;
+	border-radius: 0 2px 2px 0;
+	background-color: #f2f2f2;
+}
+
+.article_content pre {
+	margin:10px 0;
+	white-space: pre;
+    white-space: -moz-pre;
+    white-space: -pre;
+    white-space: -o-pre;
+	word-wrap: normal;
+}
+
+/* code 样式 */
+
+code {
+	width: 100%;
+	max-height: 400px;
+	overflow: auto;
+	display: block;
+	background-color: #F2F2F2;
+	border-radius: 3px;
+	box-sizing: border-box;
+    padding: 4px 6px;
+	font-weight: bold;
+    font-size: 14px;
+}
+
+
+/* ul ol 样式 */
+
+.article_detail ul,
+.article_detail ol {
+	margin: 10px 0 10px 0;
+}

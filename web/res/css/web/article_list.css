@@ -1,0 +1,38 @@
+.layui-elem-field legend {
+  font-size: 16px; }
+
+.open-all {
+  line-height: 36px;
+  padding-left: 10px;
+  color: #F75733; }
+  .open-all:hover {
+    cursor: pointer;
+    text-decoration: underline; }
+
+.content-left {
+  margin-bottom: 20px; }
+
+.content .content-left {
+  border-color: #E8E5DD;
+  background: #E8E5DD;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  min-height: 300px;
+  padding: 30px 20px;
+  padding-top: 20px;
+  border-radius: 2px; }
+  .content .content-left .layui-collapse .layui-colla-item h2 {
+    font-size: 18px;
+    background: none; }
+  .content .content-left .layui-collapse .layui-colla-item .layui-colla-content {
+    padding-left: 35px; }
+    .content .content-left .layui-collapse .layui-colla-item .layui-colla-content ul li {
+      font-size: 16px;
+      line-height: 28px; }
+      .content .content-left .layui-collapse .layui-colla-item .layui-colla-content ul li a,
+      .content .content-left .layui-collapse .layui-colla-item .layui-colla-content ul li span {
+        font-size: 14px; }
+      .content .content-left .layui-collapse .layui-colla-item .layui-colla-content ul li a:hover {
+        text-decoration: underline;
+        color: #F75733; }
+
+/*# sourceMappingURL=article_list.css.map */

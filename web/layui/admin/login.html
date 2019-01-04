@@ -1,0 +1,141 @@
+   <!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>偶尔有点困-后台登录</title>
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="bookmark" href="/favicon.ico" />
+		<link rel="stylesheet" href="../css/layui.css" />
+		<link rel="stylesheet" href="../css/admin/login.css" />
+	</head>
+
+	<body>
+		<div class="layui-container">
+			<div class="layadmin-user-login-main center">
+				<form id="login" class="layadmin-user-login-box layadmin-user-login-body layui-form">
+					<div class="layui-form-item">
+						<div class="logo">
+							<img src="https://spring.io/img/homepage/icon-spring-cloud-data-flow.svg" />
+						</div>
+						<h3 class="title">欢迎来到纯真年代后台管理系统</h3>
+					</div>
+					<div class="layui-form-item">
+						<input name="username" lay-verify="required" placeholder="默认账号guest" class="my-layui-input" type="text">
+					</div>
+					<div class="layui-form-item">
+						<input name="password" lay-verify="required|password" placeholder="默认密码guest" class="my-layui-input" type="password">
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-row">
+							<div class="layui-col-xs7">
+								<input type="hidden" name="code" />
+								<input type="text" name="codeStr" id="LAY-user-login-vercode" lay-verify="required" placeholder="图形验证码" class="my-layui-input">
+							</div>
+							<div class="layui-col-xs5">
+								<div style="margin-left: 10px;">
+									<img id="codeImg" src="https://www.oschina.net/action/user/captcha" class="layadmin-user-login-codeimg" id="LAY-user-get-vercode">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<button class="my-layui-btn" lay-submit lay-filter="LAY-user-login-submit">Login</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../layui.js"></script>
+	<script type="text/javascript" src="../lay/system/admin/public.js?v=dksao923470oer92148"></script>
+	<script type="text/javascript">
+		layui.use(['layer', 'form', 'element', 'jquery'], function() {
+			var layer = layui.layer,
+				element = layui.element,
+				form = layui.form,
+				$ = layui.$;
+			form.render();
+			initData();
+			$("#codeImg").click(function(){
+				initVerifyCode();
+			})
+			//提交
+			form.on('submit(LAY-user-login-submit)', function(data) {
+				var user_data = JSON.stringify(data.field);
+				$.ajax({
+					url: IP + '/api/blog-oauth2/oauth2/login',
+					contentType: "application/x-www-form-urlencoded",
+					headers: {
+						'Authorization': ''
+					},
+					data: $('#login').serialize(),
+					success: function(result, status, xhr) {
+						layer.closeAll('loading');
+						localStorage.setItem("access_token", result.access_token)
+						localStorage.setItem("token_type", result.token_type)
+						localStorage.setItem("refresh_token", result.refresh_token)
+						localStorage.setItem("expires_in", result.expires_in)
+						localStorage.setItem("scope", result.scope)
+						layer.msg("登录成功", {
+							icon: 1,
+							time: 1000
+						}, function() {
+							parent.window.location.href = 'index.html'
+						});
+					}
+				});
+				return false;
+			});
+			form.verify({
+				password: [
+					/^[\S]{5,16}$/, '密码必须5到16位，且不能出现空格'
+				]
+			});
+			//校验
+			function initData() {
+				checkAccessToken();
+				//初始化验证码
+				initVerifyCode();
+			}
+
+			function checkAccessToken() {
+				var access_token = localStorage.getItem("access_token");
+				if(access_token != null && access_token.trim().length != 0) {
+					$.ajax({
+						type: 'GET',
+						headers: {
+							'Authorization': localStorage.getItem("access_token") == null ? "" : "Bearer " + localStorage.getItem("access_token")
+						},
+						async: false,
+						url: IP + '/api/blog-oauth2/get_user_info',
+						success: function(data) {
+							parent.window.location.href = 'index.html';
+						},
+						error: function(xhr, textStatus, errorThrown) {
+							if(xhr.status == 401) {
+								localStorage.removeItem("access_token");
+							}
+						}
+					});
+				}
+			}
+
+			function initVerifyCode() {
+				$.ajax({
+					type: 'GET',
+					async: false,
+					url: IP + '/api/blog-oauth2/oauth2/verCode?histCode='+$("input[name='code']").val(),
+					success: function(data) {
+						layer.closeAll('loading');
+						$("input[name='code']").val(data.code);
+						$("#codeImg").attr('src',data.codeStr);
+					}
+				});
+			}
+		});
+	</script>
+	<script>
+	</script>
+
+</html>

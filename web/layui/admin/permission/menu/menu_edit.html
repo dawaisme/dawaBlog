@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>admin_edit</title>
+		<link rel="shortcut icon" href="../images/my/favicon.ico" />
+		<link rel="bookmark" href="../images/my/favicon.ico" />
+		<link rel="stylesheet" href="../../../css/layui.css" />
+		<link rel="stylesheet" href="../../../css/admin/common.css" />
+		<link rel="stylesheet" href="../../../css/admin/update_my_base_info.css" />
+	</head>
+
+	<body style="background: #F6F6F6;">
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<div class="layui-col-md12">
+					<div class="layui-card layui-anim layui-anim-upbit">
+						<div class="layui-card-header">编辑菜单
+							<span class="btn_right">
+								<button type="button" id="back" title="返回" class="layui-btn layui-btn-normal layui-btn-xs" onclick="javascript:window.history.back(-1);"><i class="layui-icon">&#xe65c;</i>返回上一页</button>
+								<button type="button" id="refresh" title="刷新" class="layui-btn layui-btn-normal layui-btn-xs"><i class="layui-icon layui-icon-refresh"></i></button>
+							</span>
+						</div>
+						<div class="layui-card-body">
+							<form class="layui-form" lay-filter="formTest">
+								<div class="layui-form-item layui-row">
+									<input type="hidden" name="id" />
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">上级菜单：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<select name="parentid" lay-verify="required" id="menu">
+
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">名称：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<input type="text" name="name" lay-verify="required" placeholder="名称" autocomplete="off" class="layui-input">
+									</div>
+								</div>
+
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">类型：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<select name="type" lay-verify="required" lay-filter="menu_type">
+											<option value="">请选择菜单类型</option>
+											<option value="1">菜单</option>
+											<option value="2">按钮</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item layui-row menu_ico layui-hide">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">图标：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<span id="chooseico" class="layui-btn layui-btn-normal layui-btn-sm"></i><span>选择</span></span>
+									</div>
+								</div>
+								<div class="layui-form-item layui-row menu_href layui-hide">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">链接：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<input type="text" name="href" placeholder="链接" autocomplete="off" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-row menu_permission layui-hide">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">权限名称：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12">
+										<input id="birthday" type="text" name="permission" placeholder="权限名称" autocomplete="off" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs12">排序：</label>
+									<div class="layui-col-md10 layui-col-sm10 layui-col-xs12" id="sex">
+										<input id="birthday" type="text" name="sort" value="100" lay-verify="required|number" placeholder="排序（数字大小）" autocomplete="off" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item layui-row">
+									<label class="my_layui-form-label layui-col-md1 layui-col-sm1 layui-col-xs1 layui-hide-xs">&nbsp;</label>
+									<button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo"></i><span>保存修改</span></button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../layui.js"></script>
+		<script type="text/javascript" src="../../../lay/system/admin/public.js?v=dksao923470oer92148"></script>
+		<script>
+			layui.use(['layer', 'form'], function() {
+				var layer = layui.layer,
+					$ = layui.$,
+					form = layui.form;
+				var id = getUrlParam("id")
+				initData(id);
+				$(function() {
+					$('#chooseico').on('click', function() {
+						layer.msg("适配中...")
+					})
+					//判断菜单按钮
+					checkMenuType($('select[name="type"]').val());
+					form.on('select(menu_type)', function(data) {
+						//1菜单，2按钮
+						checkMenuType(data.value);
+					});
+				})
+				//表单监听提交
+				form.on('submit(formDemo)', function(data) {
+					$("button[lay-filter='formDemo']").attr('disabled', true);
+					setTimeout(function() {
+						$("button[lay-filter='formDemo']").attr('disabled', false);
+					}, 10000);
+					var user_data = data.field;
+					user_data = JSON.stringify(user_data)
+					$.ajax({
+						url: IP + '/api/blog-admin/menus',
+						type: 'PUT',
+						data: user_data,
+						success: function(result, status, xhr) {
+							refresh_token();
+							layer.closeAll('loading');
+							layer.msg(result.message, {
+								icon: 1,
+								time: 1000
+							}, function() {
+								window.history.back(-1);
+							});
+						}
+					});
+					return false;
+				});
+
+				function initData(id) {
+					var html = "<option value='0'>根目录</option>";
+					var menus = getMenus(1);
+					$.each(menus, function(idx, obj) {
+						html += "<option value='" + obj.id + "'>" + obj.name + "</option>";
+					});
+					$('#menu').html(html);
+					form.render();
+					//获取数据
+					initMenuData(id);
+				}
+
+				function initMenuData(id) {
+					$.ajax({
+						url: IP + '/api/blog-admin/menus',
+						type: 'GET',
+						data: {
+							id: id
+						},
+						async: false,
+						success: function(result, status, xhr) {
+							layer.closeAll('loading');
+							var data = result.data[0];
+							form.val("formTest", data)
+							form.render();
+						}
+					});
+				}
+
+				function checkMenuType(value) {
+					$('.menu_href,.menu_permission,.menu_ico').addClass('layui-hide')
+					if(value == 1) {
+						$('.menu_href').removeClass('layui-hide')
+						$('.menu_ico').removeClass('layui-hide')
+					} else if(value == 2) {
+						$('.menu_permission').removeClass('layui-hide')
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

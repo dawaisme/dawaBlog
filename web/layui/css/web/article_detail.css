@@ -1,0 +1,206 @@
+.content .content-left {
+    border-color: #E8E5DD;
+    background: #E8E5DD;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    min-height: 500px;
+    padding: 30px 20px;
+    border-radius: 2px;
+    margin-bottom: 30px;
+}
+
+.content .content-left .intitle {
+    font-size: 14px;
+}
+
+.content .content-left .article_detail .title {
+    text-align: center;
+    padding: 20px 0 10px 0;
+}
+
+.content .content-left .article_detail > p {
+    padding: 15px 0;
+}
+
+.content .content-left .article_detail > p a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.content .content-left .article_detail > p a:hover {
+    cursor: pointer;
+}
+
+.content .content-left .article_detail > p > span {
+    float: right;
+}
+
+.content .content-left .article_detail > p > span a {
+    font-size: 15px;
+}
+
+.content .content-left .article_detail .article_content {
+    padding: 10px 0;
+    font-size: 15px;
+    line-height: 26px;
+    text-align: justify;
+    letter-spacing: .6px;
+}
+
+.content .content-left .article_detail .article_content img {
+    max-width: 100%;
+}
+
+.content .content-left .article_detail .nextinfo {
+    padding: 20px 0;
+}
+
+.content .content-left .article_detail .nextinfo p {
+    padding: 5px 0;
+}
+
+.content .content-left .article_detail .comment_editor {
+    border: 1px solid #b4b4b4;
+    border-radius: 2px;
+}
+
+.content .content-left .article_detail .comment_editor .fly-edit {
+    border-bottom: 1px solid #b4b4b4;
+    padding: 3px 5px;
+}
+
+.content .content-left .article_detail .comment_editor .fly-edit span {
+    position: relative;
+    width: 32px;
+    height: 30px;
+    line-height: 30px;
+    margin: 4px 6px;
+    color: #7D2511;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.content .content-left .article_detail .comment_editor .fly-edit span i {
+    margin-right: 3px;
+}
+
+.content .content-left .article_detail .comment_editor .layui-textarea {
+    border: none;
+}
+
+.content .content-left .article_detail .layui-submit {
+    float: right;
+    margin: 10px 0;
+}
+
+.content .content-left .comment ul li {
+    padding: 10px 0;
+    border-bottom: 1px dashed #ccc;
+}
+
+.content .content-left .comment ul li .user_header_img {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    float: left;
+    margin-right: 10px;
+    overflow: hidden;
+}
+
+.content .content-left .comment ul li .user_header_img img {
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 50%;
+}
+
+.content .content-left .comment ul li .pad-btm {
+    height: 40px;
+    overflow: hidden;
+}
+
+.content .content-left .comment ul li .pad-btm p {
+    line-height: 20px;
+}
+
+.content .content-left .comment ul li .pad-btm .user_nickname {
+    color: #F75733;
+    font-weight: bold;
+}
+
+.content .content-left .comment ul li .pad-btm .user_nickname:hover {
+    color: #F75733;
+}
+
+.content .content-left .comment ul li .pad-btm .min-font {
+    font-size: 12px;
+    color: #999 !important;
+}
+
+.content .content-left .comment ul li .comment_content {
+    padding-top: 10px;
+    word-break: break-word;
+}
+
+.content .content-left .comment ul li .info {
+    text-align: right;
+    font-size: 12px;
+}
+
+.content .content-left .comment ul li .info span,
+.content .content-left .comment ul li .info a {
+    color: #777;
+    margin-right: 5px;
+}
+
+.content .content-left .comment ul li .info a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.content .content-left .comment ul li.childs {
+    margin-left: 40px;
+}
+
+.content .content-left .comment ul .layui-flow-more cite {
+    background: #F75733;
+    color: #FFFFFF;
+}
+
+body .layui-edit-face {
+    border: none;
+    background: none;
+}
+
+body .layui-edit-face .layui-layer-content {
+    padding: 0;
+    background-color: #fff;
+    color: #666;
+    box-shadow: none;
+}
+
+body .layui-edit-face .layui-layer-content ul {
+    position: relative;
+    width: 372px;
+    padding: 10px;
+    border: 1px solid #D9D9D9;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+body .layui-edit-face .layui-layer-content ul li {
+    cursor: pointer;
+    float: left;
+    border: 1px solid #e8e8e8;
+    height: 22px;
+    width: 26px;
+    overflow: hidden;
+    margin: -1px 0 0 -1px;
+    padding: 4px 2px;
+    text-align: center;
+}
+
+body .layui-edit-face .layui-layer-TipsG {
+    display: none;
+}
+
+/*# sourceMappingURL=article_detail.css.map */

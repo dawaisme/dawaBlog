@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>file_list</title>
+		<link rel="shortcut icon" href="../images/my/favicon.ico" />
+		<link rel="bookmark" href="../images/my/favicon.ico" />
+		<link rel="stylesheet" href="../../../css/layui.css" />
+		<link rel="stylesheet" href="../../../css/admin/common.css" />
+		<link rel="stylesheet" href="../../../css/admin/admin_list.css" />
+	</head>
+
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<div class="layui-col-md12">
+					<div class="layui-card layui-anim layui-anim-upbit">
+						<div class="layui-card-header">阿里云 OSS
+							<span class="btn_right">
+								<button type="button" id="refresh" title="刷新" class="layui-btn layui-btn-normal layui-btn-xs"><i class="layui-icon layui-icon-refresh"></i></button>
+							</span>
+						</div>
+						<form class="layui-form" action="">
+							<div class="layui-card-body">
+								<header>
+									<div class="layui-form-item">
+										<button id="upload" type="button" class="layui-btn layui-btn-normal layui-btn layui-btn-sm">上传文件</button>
+										<button id="create" type="button" class="layui-btn layui-btn-primary layui-btn layui-btn-sm">新建目录</button>
+										<button id="delete" type="button" class="layui-btn layui-btn-primary layui-btn layui-btn-sm">删除</button>
+									</div>
+								</header>
+								<div>
+									<table id="file_table" class="layui-table layui-unselect" lay-skin="nob">
+										<colgroup>
+											<col>
+											<col>
+											<col>
+											<col>
+											<col>
+										</colgroup>
+										<thead>
+											<tr>
+												<th><input type="checkbox" lay-skin="primary" lay-filter="selectAll"></th>
+												<th>文件名（Object Name）</th>
+												<th>文件大小</th>
+												<th>存储类型</th>
+												<th>更新时间</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="upload_content" style="display: none;">
+			<div class="layui-row">
+				<div class="layui-col-md2 layui-col-xs2">
+					文件目录：
+				</div>
+				<div class="layui-col-md10 layui-col-xs10">
+					当前目录
+				</div>
+			</div>
+			<div class="layui-row">
+				<div class="layui-col-md2 layui-col-xs2">
+					目录地址：
+				</div>
+				<div class="layui-col-md10 layui-col-xs10" id="folder_address"></div>
+			</div>
+			<div class="layui-row">
+				<div class="layui-col-md2 layui-col-xs2">
+					上传文件：
+				</div>
+				<div class="layui-col-md10 layui-col-xs10">
+					<div class="layui-upload-drag" id="test10">
+						<i class="layui-icon layui-icon-upload-drag"></i>
+						<p>将目录或多个文件（最多支持100个文件同时上传）拖拽到此，或直接上传</p>
+					</div>
+					<div class="oss-intl-lines">
+						<p>文件的命名规范如下：</p>
+						<ol>
+							<li>使用 UTF-8 编码</li>
+							<li>长度必须在 1-1023 字节之间</li>
+							<li>不能以「/」或者「\」字符开头</li>
+						</ol>
+						<p> 注意：对象名称需要区分大小写。如无特殊说明，本文档中的对象、文件称谓等同于 Object。</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="create_folder" style="display: none;">
+			<div class="layui-row">
+				<div class="layui-col-md2 layui-col-xs2" style="line-height: 26px;">
+					目录名称：
+				</div>
+				<div class="layui-col-md10 layui-col-xs10">
+					<input id="create_folder_name" type="text" class="layui-input" style="height: 30px;line-height: 30px; padding: 0 10px;" />
+				</div>
+			</div>
+			<div class="layui-row" style="text-align: right;">
+				<button id="create_folder_yes" type="button" class="layui-btn layui-btn-normal layui-btn layui-btn-sm">确定</button>
+			</div>
+			<div class="oss-intl-lines">
+				<p>目录命名规范：</p>
+				<ol>
+
+					<li>不允许使用表情符，请使用符合要求的 UTF-8 字符</li>
+					<li>「/」用于分割路径，可快速创建子目录，但，不要以「/」打头，不要出现连续的「/」</li>
+					<li>不允许出现名为「..」的子目录</li>
+					<li>总长度控制在 1-254 个字符</li>
+				</ol>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../layui.js"></script>
+		<script type="text/javascript" src="../../../lay/system/admin/public.js?v=dksao923470oer92148"></script>
+		<script type="text/javascript" src="../../../lay/system/admin/file_list.js?v=dksao923470oer92148"></script>
+	</body>
+
+</html>
